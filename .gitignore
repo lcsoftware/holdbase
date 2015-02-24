@@ -1,0 +1,13 @@
+.project
+*/node-log.log
+logs/*.log
+*.log
+!.gitignore
+game-server/node_modules/*
+web-server/node_modules/*
+node-modules
+**/*.svn
+*.svn
+*.swp
+*.sublime-project
+*.sublime-workspace
