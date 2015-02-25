@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	db: 'mongodb://localhost/holdbase-dev',
+	db: 'mongodb://localhost/holdbase',
 	app: {
 		title: 'holdbase - Development Environment'
 	},
