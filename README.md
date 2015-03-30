@@ -1,2 +1,2 @@
 # holdbase
-a system for mail and job
+ai system for mail and job
