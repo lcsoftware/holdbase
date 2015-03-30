@@ -25,6 +25,28 @@ var validateLocalStrategyPassword = function(password) {
  * User Schema
  */
 var UserSchema = new Schema({
+    displayName: {
+        type: String,
+        trim: true
+    },
+    userNmae: {
+        type: String,
+        time: true,
+        unique: 'login name is not null',
+        trim: true
+    },
+    password: {
+        type: String,
+        default: '',
+        validate: [validateLocalStrategyPassword, 'Password should be longer']
+    },
+    updated: {
+        type: Date
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    }
 	/*firstName: {
 		type: String,
 		trim: true,
@@ -37,58 +59,22 @@ var UserSchema = new Schema({
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
 	},*/
-	displayName: {
-		type: String,
-		trim: true
-	},
+
 	/*email: {
 		type: String,
 		trim: true,
 		default: '',
 		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
 		match: [/.+\@.+\..+/, 'Please fill a valid email address']
-	},*/
-	username: {
-		type: String,
-		unique: 'testing error message',
-		required: 'Please fill in a username',
-		trim: true
 	},
-	password: {
-		type: String,
-		default: '',
-		validate: [validateLocalStrategyPassword, 'Password should be longer']
-	},
-	salt: {
-		type: String
-	},
-	provider: {
-		type: String,
-		required: 'Provider is required'
-	},
-	providerData: {},
-	additionalProvidersData: {},
+
 	roles: {
 		type: [{
 			type: String,
 			enum: ['user', 'admin']
 		}],
 		default: ['user']
-	},
-	updated: {
-		type: Date
-	},
-	created: {
-		type: Date,
-		default: Date.now
-	},
-	/* For reset password */
-	resetPasswordToken: {
-		type: String
-	},
-	resetPasswordExpires: {
-		type: Date
-	}
+	},*/
 });
 
 /**
