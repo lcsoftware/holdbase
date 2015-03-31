@@ -31,7 +31,6 @@ var UserSchema = new Schema({
     },
     userNmae: {
         type: String,
-        time: true,
         unique: 'login name is not null',
         trim: true
     },
@@ -39,6 +38,9 @@ var UserSchema = new Schema({
         type: String,
         default: '',
         validate: [validateLocalStrategyPassword, 'Password should be longer']
+    },
+    salt: {
+        type: String
     },
     updated: {
         type: Date
