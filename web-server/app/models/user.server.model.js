@@ -18,7 +18,7 @@ var validateLocalStrategyProperty = function(property) {
  * A Validation function for local strategy password
  */
 var validateLocalStrategyPassword = function(password) {
-	return (this.provider !== 'local' || (password && password.length > 6));
+	return password && password.length >= 1;
 };
 
 /**
@@ -29,7 +29,7 @@ var UserSchema = new Schema({
         type: String,
         trim: true
     },
-    userNmae: {
+    usernmae: {
         type: String,
         unique: 'login name is not null',
         trim: true
@@ -43,7 +43,8 @@ var UserSchema = new Schema({
         type: String
     },
     updated: {
-        type: Date
+        type: Date,
+        default: Date.now
     },
     created: {
         type: Date,

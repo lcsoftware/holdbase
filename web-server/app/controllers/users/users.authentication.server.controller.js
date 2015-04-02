@@ -17,8 +17,10 @@ exports.signup = function(req, res) {
 	var user = new User(req.body);
 	var message = null;
 
+	console.log('-------------------------------', req.body.password);
+	console.log(user);
 	// Add missing user fields
-	user.displayName = '';
+	user.displayName = user.userName;
 
 	// Then save the user
 	user.save(function(err) {
@@ -35,6 +37,7 @@ exports.signup = function(req, res) {
 				if (err) {
 					res.status(400).send(err);
 				} else {
+				    console.log(user);
 					res.json(user);
 				}
 			});
