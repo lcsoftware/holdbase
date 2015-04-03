@@ -8,8 +8,6 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$http
 	    if ($scope.authentication.user) $location.path('/');
 
 	    $scope.signup = function () { 
-	        console.log($scope.credentials)
-
 	        if ($scope.credentials.password !== $scope.credentials.verifyPassword) {
 	            $scope.error = 'the password and verifyPassword must be same!'
 	            return;

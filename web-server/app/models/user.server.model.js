@@ -11,7 +11,7 @@ var mongoose = require('mongoose'),
  * A Validation function for local strategy properties
  */
 var validateLocalStrategyProperty = function(property) {
-	return ((this.provider !== 'local' && !this.updated) || property.length);
+	return (!this.updated || property.length);
 };
 
 /**
@@ -29,7 +29,7 @@ var UserSchema = new Schema({
         type: String,
         trim: true
     },
-    usernmae: {
+    userName: {
         type: String,
         unique: 'login name is not null',
         trim: true
@@ -84,7 +84,7 @@ var UserSchema = new Schema({
  * Hook a pre save method to hash the password
  */
 UserSchema.pre('save', function(next) {
-	if (this.password && this.password.length > 6) {
+	if (this.password && this.password.length >= 1) {
 		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
 		this.password = this.hashPassword(this.password);
 	}

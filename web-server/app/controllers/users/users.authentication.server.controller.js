@@ -17,7 +17,7 @@ exports.signup = function(req, res) {
 	var user = new User(req.body);
 	var message = null;
 
-	console.log('-------------------------------', req.body.password);
+	console.log('-------------------------------', user);
 	console.log(user);
 	// Add missing user fields
 	user.displayName = user.userName;
