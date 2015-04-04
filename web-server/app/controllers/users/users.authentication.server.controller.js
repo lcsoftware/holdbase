@@ -17,10 +17,9 @@ exports.signup = function(req, res) {
 	var user = new User(req.body);
 	var message = null;
 
-	console.log('-------------------------------', user);
-	console.log(user);
 	// Add missing user fields
-	user.displayName = user.userName;
+	user.provider = 'local';
+	user.displayName = user.username;
 
 	// Then save the user
 	user.save(function(err) {
@@ -49,6 +48,7 @@ exports.signup = function(req, res) {
  * Signin after passport authentication
  */
 exports.signin = function(req, res, next) {
+	console.log(req.body);
 	passport.authenticate('local', function(err, user, info) {
 		if (err || !user) {
 			res.status(400).send(info);

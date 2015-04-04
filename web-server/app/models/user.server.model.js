@@ -11,81 +11,74 @@ var mongoose = require('mongoose'),
  * A Validation function for local strategy properties
  */
 var validateLocalStrategyProperty = function(property) {
-	return (!this.updated || property.length);
+	return ((this.provider !== 'local' && !this.updated) || property.length);
 };
 
 /**
  * A Validation function for local strategy password
  */
 var validateLocalStrategyPassword = function(password) {
-	return password && password.length >= 1;
+	return (this.provider !== 'local' || (password && password.length > 6));
 };
 
 /**
  * User Schema
  */
 var UserSchema = new Schema({
-    displayName: {
-        type: String,
-        trim: true
-    },
-    userName: {
-        type: String,
-        unique: 'login name is not null',
-        trim: true
-    },
-    password: {
-        type: String,
-        default: '',
-        validate: [validateLocalStrategyPassword, 'Password should be longer']
-    },
-    salt: {
-        type: String
-    },
-    updated: {
-        type: Date,
-        default: Date.now
-    },
-    created: {
-        type: Date,
-        default: Date.now
-    }
-	/*firstName: {
-		type: String,
-		trim: true,
-		default: '',
-		validate: [validateLocalStrategyProperty, 'Please fill in your first name']
-	},
-	lastName: {
-		type: String,
-		trim: true,
-		default: '',
-		validate: [validateLocalStrategyProperty, 'Please fill in your last name']
-	},*/
 
-	/*email: {
+	displayName: {
 		type: String,
-		trim: true,
-		default: '',
-		validate: [validateLocalStrategyProperty, 'Please fill in your email'],
-		match: [/.+\@.+\..+/, 'Please fill a valid email address']
+		trim: true
 	},
-
+	username: {
+		type: String,
+		unique: 'Username already exists',
+		required: 'Please fill in a username',
+		trim: true
+	},
+	password: {
+		type: String,
+		default: '',
+		validate: [validateLocalStrategyPassword, 'Password should be longer']
+	},
+	salt: {
+		type: String
+	},
+	provider: {
+		type: String,
+		required: 'Provider is required'
+	},
+	providerData: {},
+	additionalProvidersData: {},
 	roles: {
 		type: [{
 			type: String,
 			enum: ['user', 'admin']
 		}],
 		default: ['user']
-	},*/
+	},
+	updated: {
+		type: Date
+	},
+	created: {
+		type: Date,
+		default: Date.now
+	},
+	/* For reset password */
+	resetPasswordToken: {
+		type: String
+	},
+	resetPasswordExpires: {
+		type: Date
+	}
 });
 
 /**
  * Hook a pre save method to hash the password
  */
 UserSchema.pre('save', function(next) {
-	if (this.password && this.password.length >= 1) {
-		this.salt = new Buffer(crypto.randomBytes(16).toString('base64'), 'base64');
+	if (this.password && this.password.length > 6) {
+		this.salt = crypto.randomBytes(16).toString('base64');
 		this.password = this.hashPassword(this.password);
 	}
 
@@ -97,7 +90,7 @@ UserSchema.pre('save', function(next) {
  */
 UserSchema.methods.hashPassword = function(password) {
 	if (this.salt && password) {
-		return crypto.pbkdf2Sync(password, this.salt, 10000, 64).toString('base64');
+		return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 64).toString('base64');
 	} else {
 		return password;
 	}
