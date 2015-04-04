@@ -1,0 +1,37 @@
+<section data-ng-controller="BenchesController" data-ng-init="find()">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li class="active">
+                        <a href="#">Overview
+                        <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li><a href="#">Reports</a></li>
+                    <li><a href="#">Analytics</a></li>
+                    <li><a href="#">Export</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9 col-md-2">
+
+            </div>
+        </div>
+    </div>
+    <!--<div class="page-header">-->
+        <!--<h1>Benches</h1>-->
+    <!--</div>-->
+    <!--<div class="list-group">-->
+        <!--<a data-ng-repeat="bench in benches" data-ng-href="#!/benches/{{bench._id}}" class="list-group-item">-->
+			<!--<small class="list-group-item-text">-->
+				<!--Posted on-->
+				<!--<span data-ng-bind="bench.created | date:'medium'"></span>-->
+				<!--by-->
+				<!--<span data-ng-bind="bench.user.displayName"></span>-->
+			<!--</small>-->
+			<!--<h4 class="list-group-item-heading" data-ng-bind="bench.name"></h4>-->
+        <!--</a>-->
+    <!--</div>-->
+    <!--<div class="alert alert-warning text-center" data-ng-hide="!benches.$resolved || benches.length">-->
+    	<!--No Benches yet, why don't you <a href="/#!/benches/create">create one</a>?-->
+    <!--</div>-->
+</section>
