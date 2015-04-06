@@ -6,6 +6,27 @@ var Handler = function(app) {
   this.app = app;
 };
 
+// New client enter
+Handler.prototype.enter = function(msg, session, next){
+	var self = this;
+	var uid = msg.uid;
+	var rid = msg.rid;
+	var sessionService = self.app.get('sessionService');
+	///duplicate login
+	if (!!sessionService.getByUid(uid)) {
+		next(null, {code: 500});
+		return;
+	}
+	session.bind(uid);
+	session.set('rid', rid);
+	session.push('rid', function(err){
+		if(err) {
+			console.error('set rid for session service failed! error is : %j', err.stack);
+		}
+	});
+
+}
+
 /**
  * New client entry.
  *

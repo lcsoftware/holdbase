@@ -1,37 +1,87 @@
 <section data-ng-controller="BenchesController" data-ng-init="find()">
-    <div class="container-fluid">
-        <div class="row">
+    <div class="row">
+        <div class="col-md-2" style="background-color: red;">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li class="active">
-                        <a href="#">Overview
-                        <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li><a href="#">Reports</a></li>
-                    <li><a href="#">Analytics</a></li>
-                    <li><a href="#">Export</a></li>
+                    <li><a href="#">HoldBase<span class="sr-only">(current)</span></a></li>
+                    <a href="#" class="list-group-item active">收件箱<span class="badge">14</span></a>
+                    <a href="#" class="list-group-item">草稿箱</a>
+                    <a href="#" class="list-group-item">已发送</a>
+                    <a href="#" class="list-group-item">已删除</a>
+                </ul>
+                <ul class="nav nav-sidebar">
+                    <li><a href="#">我的项目<span class="sr-only">(current)</span></a></li>
+                    <a href="#" class="list-group-item">项目一</a>
                 </ul>
             </div>
-            <div class="col-sm-9 col-md-2">
-
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-1">
+                    <div class="input-group">
+                        <input type="checkbox" aria-label="...">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-default">回复</button>
+                            <button type="button" class="btn btn-default">回复全部</button>
+                            <button type="button" class="btn btn-default">转发</button>
+                        </div>
+                        <div class="btn-group" role="group" aria-label="Second group">
+                            <button type="button" class="btn btn-default">删除</button>
+                            <button type="button" class="btn btn-default dropdown-toggle dropdown">
+                                标记为<span class="caret"></span>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">未读</a></li>
+                                    <li><a href="#">已读</a></li>
+                                </ul>
+                            </button>
+                            <button type="button" class="btn btn-default dropdown-toggle dropdown">
+                                移动到 <span class="caret"></span>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">收件箱</a></li>
+                                    <li><a href="#">文件夹1</a></li>
+                                </ul>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    <!--<div class="page-header">-->
-        <!--<h1>Benches</h1>-->
-    <!--</div>-->
-    <!--<div class="list-group">-->
-        <!--<a data-ng-repeat="bench in benches" data-ng-href="#!/benches/{{bench._id}}" class="list-group-item">-->
-			<!--<small class="list-group-item-text">-->
-				<!--Posted on-->
-				<!--<span data-ng-bind="bench.created | date:'medium'"></span>-->
-				<!--by-->
-				<!--<span data-ng-bind="bench.user.displayName"></span>-->
-			<!--</small>-->
-			<!--<h4 class="list-group-item-heading" data-ng-bind="bench.name"></h4>-->
-        <!--</a>-->
-    <!--</div>-->
-    <!--<div class="alert alert-warning text-center" data-ng-hide="!benches.$resolved || benches.length">-->
-    	<!--No Benches yet, why don't you <a href="/#!/benches/create">create one</a>?-->
-    <!--</div>-->
 </section>
