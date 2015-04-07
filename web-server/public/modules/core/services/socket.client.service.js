@@ -26,11 +26,11 @@ angular.module('core').factory('HSocket', function () {
                 });
             });
         });
-    }
+    };
 
     service.send = function(message, callback){
         pomelo.send(message, callback);
-    }
+    };
 
     return service;
 });
