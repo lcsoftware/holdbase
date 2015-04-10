@@ -16,7 +16,7 @@ angular.module('core').factory('HSocket', function () {
     };
 
     service.connect = function (uid, passwd, callback) {
-        var route = 'connector.entryHandler.enter';
+        var route = 'connector.entryHandler.login';
         queryEntry(uid, function (data) {
             pomelo.init({host: data.host, port: data.port, log: true}, function(){
                 pomelo.request(route, {uid: uid, password: passwd}, function(message){

@@ -40,7 +40,7 @@ UserRemote.prototype.add = function(uid, sid, name, flag, cb) {
  * @return {Array} users uids in channel
  *
  */
-ChatRemote.prototype.get = function(name, flag) {
+UserRemote.prototype.get = function(name, flag) {
 	var users = [];
 	var channel = this.channelService.getChannel(name, flag);
 	if( !! channel) {

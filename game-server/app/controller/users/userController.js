@@ -1,6 +1,6 @@
 'use strict';
+require('../../models/user.model');
 
-var userRemote = require('../remote/userRemote');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 

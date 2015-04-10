@@ -42,7 +42,5 @@ handler.send = function(msg, session, next) {
 			sid: tsid
 		}]);
 	}
-	next(null, {
-		route: msg.route
-	});
+	next(null, { route: msg.route });
 };
