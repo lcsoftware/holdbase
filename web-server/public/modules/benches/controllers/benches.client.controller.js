@@ -4,6 +4,11 @@
 angular.module('benches').controller('BenchesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Benches',
 	function($scope, $stateParams, $location, Authentication, Benches) {
 		$scope.authentication = Authentication;
+		/// not login
+		if (!Authentication.user) $location.path('/signin');
+
+
+
 
 		// Create new Bench
 		$scope.create = function() {

@@ -3,7 +3,13 @@
     "version":"0.0.1",
     "private":false,
     "dependencies":{
-        "pomelo":"1.1.5",
+        "pomelo":"1.1.6",
+        "chalk": "~0.5",
+        "mongodb": "2.0",
+        "mongoose": "~4.0.0",
+        "passport": "~0.2.0",
+        "passport-local": "~1.0.0",
+        "crypto": "0.0.3",
         "crc": "0.2.0"
     }
 }
