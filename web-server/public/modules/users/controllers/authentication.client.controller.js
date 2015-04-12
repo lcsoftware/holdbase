@@ -32,7 +32,7 @@ angular.module('users').controller('AuthenticationController',
                     if (data.d.code !== 200) {
                         $scope.error = data.d.message;
                     } else {
-                        $scope.authentication.user = data.d.message;
+                        $scope.authentication.user = data.d.message.user;
                         $location.path('/benches');
                     }
                 });
