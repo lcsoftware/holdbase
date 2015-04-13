@@ -7,11 +7,14 @@ var User = mongoose.model('User');
 var exports = module.exports;
 
 exports.login = function(username, password, callback) {
+  console.log(username)
   User.findOne({username: username}, function(err, user){
     if (err) {
       callback({code: 500, message: err});
       return;
     }
+    console.log('+++++++++++++++++++++');
+    console.log(user);
     if (!user) {
       callback({code: 500, message: username + ' not found!' });
       return;

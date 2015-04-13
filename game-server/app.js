@@ -20,13 +20,11 @@ var db = mongoose.connect('mongodb://localhost:27017/holdbase', function(err) {
 
 
 // app configuration
-app.configure('production|development', 'connector', function(){
+app.configure('production|development',  function(){
   app.set('connectorConfig',
     {
       connector : pomelo.connectors.hybridconnector,
-      heartbeat : 3,
-      useDict : true,
-      useProtobuf : true
+      heartbeat : 3
     });
 });
 
