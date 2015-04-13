@@ -1,71 +1,72 @@
 'use strict';
 
 // Benches controller
-angular.module('benches').controller('BenchesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Benches',
-	function($scope, $stateParams, $location, Authentication, Benches) {
-		$scope.authentication = Authentication;
-		/// not login
-		if (!Authentication.user) $location.path('/signin');
+var controller = function ($scope, $stateParams, $location, Authentication, Benches, HSocket) {
+    $scope.authentication = Authentication;
+    /// not login
+    if (!Authentication.user) $location.path('/signin'); 
 
+    HSocket.send('ddd', function () {
+        console.log('fff');
+    });
 
+    // Create new Bench
+    $scope.create = function () {
+        // Create new Bench object
+        var bench = new Benches({
+            name: this.name
+        });
 
+        // Redirect after save
+        bench.$save(function (response) {
+            $location.path('benches/' + response._id);
 
-		// Create new Bench
-		$scope.create = function() {
-			// Create new Bench object
-			var bench = new Benches ({
-				name: this.name
-			});
+            // Clear form fields
+            $scope.name = '';
+        }, function (errorResponse) {
+            $scope.error = errorResponse.data.message;
+        });
+    };
 
-			// Redirect after save
-			bench.$save(function(response) {
-				$location.path('benches/' + response._id);
+    // Remove existing Bench
+    $scope.remove = function (bench) {
+        if (bench) {
+            bench.$remove();
 
-				// Clear form fields
-				$scope.name = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+            for (var i in $scope.benches) {
+                if ($scope.benches[i] === bench) {
+                    $scope.benches.splice(i, 1);
+                }
+            }
+        } else {
+            $scope.bench.$remove(function () {
+                $location.path('benches');
+            });
+        }
+    };
 
-		// Remove existing Bench
-		$scope.remove = function(bench) {
-			if ( bench ) { 
-				bench.$remove();
+    // Update existing Bench
+    $scope.update = function () {
+        var bench = $scope.bench;
 
-				for (var i in $scope.benches) {
-					if ($scope.benches [i] === bench) {
-						$scope.benches.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.bench.$remove(function() {
-					$location.path('benches');
-				});
-			}
-		};
+        bench.$update(function () {
+            $location.path('benches/' + bench._id);
+        }, function (errorResponse) {
+            $scope.error = errorResponse.data.message;
+        });
+    };
 
-		// Update existing Bench
-		$scope.update = function() {
-			var bench = $scope.bench;
+    // Find a list of Benches
+    $scope.find = function () {
+        $scope.benches = Benches.query();
+    };
 
-			bench.$update(function() {
-				$location.path('benches/' + bench._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-		// Find a list of Benches
-		$scope.find = function() {
-			$scope.benches = Benches.query();
-		};
-
-		// Find existing Bench
-		$scope.findOne = function() {
-			$scope.bench = Benches.get({ 
-				benchId: $stateParams.benchId
-			});
-		};
-	}
-]);
+    // Find existing Bench
+    $scope.findOne = function () {
+        $scope.bench = Benches.get({
+            benchId: $stateParams.benchId
+        });
+    };
+}
+controller.$injector = ['$scope', '$stateParams', '$location', 'Authentication', 'Benches', 'HSocket'];
+angular.module('benches').controller('BenchesController', controller);
