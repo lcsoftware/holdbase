@@ -5,7 +5,7 @@ angular.module('core').factory('HSocket', function () {
 
     var pomelo = window.pomelo;
 
-    var queryEntry = function (uid, callback) {
+    var getConnector = function (uid, callback) {
         var route = 'gate.gateHandler.queryEntry';
         pomelo.init({host: window.location.hostname, port: 3014, log: true}, function () {
             pomelo.request(route, {uid: uid}, function (data) {
@@ -17,11 +17,13 @@ angular.module('core').factory('HSocket', function () {
 
     service.connect = function (uid, passwd, callback) {
         var route = 'connector.entryHandler.login';
-        queryEntry(uid, function (data) {
+        getConnector(uid, function (data) {
             pomelo.init({host: data.host, port: data.port, log: true}, function(){
                 pomelo.request(route, {uid: uid, password: passwd}, function(message){
-                    //if message.code !== 200 that mean is user and passwd is wrong
-                    if (message.code !== 200) pomelo.disconnect();
+                    if (message.code !== 200){
+                        //if message.code !== 200 that mean is user and passwd is wrong
+                        pomelo.disconnect();
+                    }
                     if (callback) callback(message);
                 });
             });

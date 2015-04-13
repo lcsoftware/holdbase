@@ -28,7 +28,6 @@ app.configure('production|development',  function(){
     });
 });
 
-
 // start app
 app.start();
 
