@@ -3,7 +3,6 @@
 logs/*.log
 *.log
 !.gitignore
-game-server/config/servers.json
 game-server/node_modules/*
 web-server/node_modules/*
 node-modules

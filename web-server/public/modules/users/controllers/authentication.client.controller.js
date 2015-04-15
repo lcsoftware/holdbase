@@ -31,11 +31,13 @@ var authenticationController = function ($scope, $state, $http, $location, Authe
                 $scope.error = data.d.message;
             } else {
                 $scope.authentication.user = data.user;
+                consolog.log('================');
+                console.log(data.user);
                 $state.go('listBenches');
             }
         });
     };
-}
+};
 
 authenticationController.$injector = ['$scope', '$state', '$http', '$location', 'Authentication', 'HSocket'];
 angular.module('users').controller('AuthenticationController', authenticationController);

@@ -67,6 +67,6 @@ var controller = function ($scope, $stateParams, $location, Authentication, Benc
             benchId: $stateParams.benchId
         });
     };
-}
+};
 controller.$injector = ['$scope', '$stateParams', '$location', 'Authentication', 'Benches', 'HSocket'];
 angular.module('benches').controller('BenchesController', controller);
