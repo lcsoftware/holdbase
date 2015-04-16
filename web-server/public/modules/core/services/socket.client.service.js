@@ -33,7 +33,6 @@ angular.module('core').factory('HSocket', function () {
     service.send = function(message, callback){
         var route = 'message.messageHandler.sendMessage';
         pomelo.request(route, { hb: 'hb' }, function (data) {
-            console.log(data);
         });
     };
 

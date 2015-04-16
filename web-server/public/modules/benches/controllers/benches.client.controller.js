@@ -6,10 +6,6 @@ var controller = function ($scope, $stateParams, $location, Authentication, Benc
     /// not login
     if (!Authentication.user) $location.path('/signin'); 
 
-    HSocket.send('ddd', function () {
-        console.log('fff');
-    });
-
     // Create new Bench
     $scope.create = function () {
         // Create new Bench object

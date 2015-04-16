@@ -12,13 +12,12 @@ var authenticationController = function ($scope, $state, $http, $location, Authe
         }
 
         $http.post('/auth/signup', $scope.credentials).success(function (response) {
-            HSocket.queryEntry(response.username, response.password, function (data) {
-                if (data.d.code === 500) {
-                    $scope.error = data.d.message;
+            HSocket.connect($scope.credentials.username, $scope.credentials.password, function (data) {
+                if (data.code === 500) {
+                    $scope.error = data.message;
                 } else {
-                    $scope.authentication.user = data.d.message;
-                    $state.go('benches');
-                }
+                    $scope.authentication.user = data.user;
+                    $state.go('listBenches'); }
             });
         }).error(function (response) {
             $scope.error = response.message;
@@ -28,11 +27,9 @@ var authenticationController = function ($scope, $state, $http, $location, Authe
     $scope.signin = function () {
         HSocket.connect($scope.credentials.username, $scope.credentials.password, function (data) {
             if (data.code !== 200) {
-                $scope.error = data.d.message;
+                $scope.error = data.message;
             } else {
                 $scope.authentication.user = data.user;
-                consolog.log('================');
-                console.log(data.user);
                 $state.go('listBenches');
             }
         });
