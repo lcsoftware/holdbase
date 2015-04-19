@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
+	Schema = mongoose.Schema;	
 
-var DeptSchema = new Schema {
+var DeptSchema = new Schema ({
 	name: {
 		type: String,
 		trim: true
@@ -17,6 +17,6 @@ var DeptSchema = new Schema {
 	},
 	children: [{type: Schema.ObjectId, ref: 'Dept'}],
 	flag: {type: Number}
-};
+});
 
 mongoose.model('Dept', DeptSchema);

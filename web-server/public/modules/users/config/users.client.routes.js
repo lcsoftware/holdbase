@@ -4,42 +4,69 @@
 angular.module('users').config(['$stateProvider',
 	function($stateProvider) {
 		// Users state routing
-		$stateProvider.
-		state('profile', {
-			url: '/settings/profile',
+		var settings = {
+			name: 'settings',
+			abstract: true,
+			url: '/settings',
+			templateUrl: 'modules/users/views/settings/settings.client.view.html'
+		};
+
+		var profile = {
+			name: 'settings.profile',
+			url: '/profile',
 			templateUrl: 'modules/users/views/settings/edit-profile.client.view.html'
-		}).
-		state('password', {
-			url: '/settings/password',
+		};
+		
+		var password= {
+			name: 'settings.password',
+			url: '/password',
 			templateUrl: 'modules/users/views/settings/change-password.client.view.html'
-		}).
-		state('accounts', {
-			url: '/settings/accounts',
-			templateUrl: 'modules/users/views/settings/social-accounts.client.view.html'
-		}).
-		state('signup', {
+		};
+
+		var signup = {
+			name: 'signup',
 			url: '/signup',
 			templateUrl: 'modules/users/views/authentication/signup.client.view.html'
-		}).
-		state('signin', {
+		};
+
+		var signin = {
+			name: 'signin',
 			url: '/signin',
 			templateUrl: 'modules/users/views/authentication/signin.client.view.html'
-		}).
-		state('forgot', {
+		};
+
+		var forgot = {
+			name: 'forgot',
 			url: '/password/forgot',
 			templateUrl: 'modules/users/views/password/forgot-password.client.view.html'
-		}).
-		state('reset-invalid', {
+		};
+		var resetInvalid= {
+			name: 'reset-invalid',
 			url: '/password/reset/invalid',
 			templateUrl: 'modules/users/views/password/reset-password-invalid.client.view.html'
-		}).
-		state('reset-success', {
+		};
+
+		var resetSuccess= {
+			name: 'reset-success',
 			url: '/password/reset/success',
 			templateUrl: 'modules/users/views/password/reset-password-success.client.view.html'
-		}).
-		state('reset', {
+		};
+
+		var reset = {
+			name: 'reset',
 			url: '/password/reset/:token',
 			templateUrl: 'modules/users/views/password/reset-password.client.view.html'
-		});
+		};
+
+		$stateProvider
+			.state(settings)
+			.state(profile)
+			.state(password)
+			.state(signup)
+			.state(signin)
+			.state(forgot)
+			.state(resetInvalid)
+			.state(resetSuccess)
+			.state(reset);
 	}
 ]);

@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
-var CompanySchema = new Schema {
+var CompanySchema = new Schema ({
 	name : {
 		type: String,
 		unique: 'company already exists',
@@ -23,6 +23,6 @@ var CompanySchema = new Schema {
 		type: Date,
 		default: Date.now
 	}
-};
+});
 
 mongoose.model('Company', CompanySchema);

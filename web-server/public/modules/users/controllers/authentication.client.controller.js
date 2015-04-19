@@ -17,7 +17,8 @@ var authenticationController = function ($scope, $state, $http, $location, Authe
                     $scope.error = data.message;
                 } else {
                     $scope.authentication.user = data.user;
-                    $state.go('listBenches'); }
+                    $state.go('listBenches'); 
+                }
             });
         }).error(function (response) {
             $scope.error = response.message;
@@ -25,14 +26,21 @@ var authenticationController = function ($scope, $state, $http, $location, Authe
     };
 
     $scope.signin = function () {
-        HSocket.connect($scope.credentials.username, $scope.credentials.password, function (data) {
+        $http.post('/auth/signin', $scope.credentials).success(function(response){
+            HSocket.connect($scope.credentials.username, $scope.credentials.password, function (data) {
             if (data.code !== 200) {
                 $scope.error = data.message;
             } else {
                 $scope.authentication.user = data.user;
-                $state.go('listBenches');
+                console.log(data.user);
+                $state.go('settings.profile');
             }
         });
+        }).error(function(response){
+            $scope.error = response.message;
+        })
+
+        
     };
 };
 
