@@ -38,9 +38,7 @@ var authenticationController = function ($scope, $state, $http, $location, Authe
         });
         }).error(function(response){
             $scope.error = response.message;
-        })
-
-        
+        });
     };
 };
 

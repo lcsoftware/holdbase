@@ -18,7 +18,7 @@ var validateLocalStrategyProperty = function(property) {
  * A Validation function for local strategy password
  */
 var validateLocalStrategyPassword = function(password) {
-	return (this.provider !== 'local' || (password && password.length > 6));
+	return (this.provider !== 'local' || (password && password.length > 0));
 };
 
 /**
@@ -59,6 +59,7 @@ var UserSchema = new Schema({
 	},
 	company: {type: Schema.ObjectId, ref: 'Company'},
 	depts: [{type: Schema.ObjectId, ref: 'Dept'}],
+	photo: {type: String},
 	updated: {
 		type: Date
 	},
@@ -83,7 +84,6 @@ UserSchema.pre('save', function(next) {
 		this.salt = crypto.randomBytes(16).toString('base64');
 		this.password = this.hashPassword(this.password);
 	}
-	console.log('TTTTTTTTTTTTTTTTTTTTTT');
 	next();
 });
 
