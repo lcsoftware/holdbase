@@ -6,7 +6,7 @@
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
-var CompanySchema = new Schema ({
+var OrganizationSchema = new Schema ({
 	name : {
 		type: String,
 		unique: 'company already exists',
@@ -14,7 +14,8 @@ var CompanySchema = new Schema ({
 		trim: true
 	},
 	admin: [{type: Schema.ObjectId, ref: 'User'}],
-	domain: {
+	parent: [{type: Schema.ObjectId, ref: 'Organization'}],
+	url: {
 		type: String,
 		trim: true
 	},
@@ -25,4 +26,4 @@ var CompanySchema = new Schema ({
 	}
 });
 
-mongoose.model('Company', CompanySchema);
+mongoose.model('Organization', OrganizationSchema);

@@ -25,7 +25,7 @@ module.exports = {
 				'public/lib/angular-sanitize/angular-sanitize.js', 
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
-				'public/lib/pomelo-client/build/build.js',
+				'public/lib/build/build.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
 			]
 		},

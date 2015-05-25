@@ -27,6 +27,7 @@ var authenticationController = function ($scope, $state, $http, $location, Authe
 
     $scope.signin = function () {
         $http.post('/auth/signin', $scope.credentials).success(function(response){
+            console.log(response);
             HSocket.connect($scope.credentials.username, $scope.credentials.password, function (data) {
             if (data.code !== 200) {
                 $scope.error = data.message;

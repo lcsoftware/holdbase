@@ -57,8 +57,7 @@ var UserSchema = new Schema({
 		}],
 		default: ['user']
 	},
-	company: {type: Schema.ObjectId, ref: 'Company'},
-	depts: [{type: Schema.ObjectId, ref: 'Dept'}],
+	organizations: [{type: Schema.ObjectId, ref: 'Organization'}],
 	photo: {type: String},
 	updated: {
 		type: Date
