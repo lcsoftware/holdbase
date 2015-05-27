@@ -1,61 +1,27 @@
-<div class="row">		
-	<div class="col-md-2 col-md-offset-2">
-		基本资料
+<div data-ng-controller="SettingsController">
+	<div class="row">		
+		<div class="col-md-2 col-md-offset-2">
+			基本资料
+		</div>
 	</div>
-
-    <!-- <div class="col-sm-8 col-md-12" data-ng-controller="SettingsController">
-	    <h3 class="text-center">Edit your profile</h3>
-		<div>
-			<form name="userForm" data-ng-submit="updateUserProfile(userForm.$valid)" class="signin form-horizontal" autocomplete="off">
-				<fieldset>
-					<div class="form-group">
-						<label for="displayName">Display Name</label>
-						<input type="text" id="displayName" name="displayName" class="form-control" data-ng-model="user.displayName" placeholder="displayName">
-					</div>
-					<div class="form-group">
-						<label for="username">User Name</label>
-						<input type="text" id="username" name="username" class="form-control" data-ng-model="user.username" placeholder="Username">
-					</div>
-					<div class="text-center form-group">
-						<button type="submit" class="btn btn-large btn-primary">Save Profile</button>
-					</div>
-					<div data-ng-show="success" class="text-center text-success">
-						<strong>Profile Saved Successfully</strong>
-					</div>
-					<div data-ng-show="error" class="text-center text-danger">
-						<strong data-ng-bind="error"></strong>
-					</div>
-				</fieldset>
+	<div class="row">		
+	   <div class="col-md-2 col-md-offset-2">
+		    <input type="file" id="exampleInputFile" name="exampleInputFile" style="display:none;">
+	   		<a style="cursor:pointer;" onclick="document.getElementById('exampleInputFile').click()">
+	   			<img src="{{user.photoUrl}}" style="width:120px;height:120px;" alt="头像">	
+	   		</a>
+	   </div>
+	   <div class="col-md-3">
+			<form>
+			  <div class="form-group">
+			    <input type="text" class="form-control" ng-model="displayName" placeholder="真实姓名">
+			  </div>
+			  <div class="form-group">
+			    <input type="radio" class="form-control" name="sexRadio" ng-model="sex"> 男
+			    <input type="radio" class="form-control" name="sexRadio" ng-model="sex"> 女 
+			  </div>
+			  <button type="button" class="btn btn-default" ng-click="updateUserProfile()">确  定</button>
 			</form>
 		</div>
-    </div> -->
-</div>
-<div class="row">		
-   <div class="col-md-2 col-md-offset-2">
-   		<img src="../../../../asset/images/a.jpg" style="width:120px;height:120px;" alt="尊容很丢人？" class="img-circle">	
-   </div>
-
-   <div class="col-md-5">
-		<form>
-		  <div class="form-group">
-		    <label >姓名</label>
-		    <input type="text" class="form-control" placeholder="姓名">
-		  </div>
-		  <div class="form-group">
-		    <input type="radio" class="form-control" name="sexRadio" id="sexMale"> 男
-		    <input type="radio" class="form-control" name="sexRadio" id="sexFemale"> 女 
-		  </div>
-		  <div class="form-group">
-		    <label for="exampleInputFile">File input</label>
-		    <input type="file" id="exampleInputFile">
-		    <p class="help-block">Example block-level help text here.</p>
-		  </div>
-		  <div class="checkbox">
-		    <label>
-		      <input type="checkbox"> Check me out
-		    </label>
-		  </div>
-		  <button type="submit" class="btn btn-default">Submit</button>
-		</form>
 	</div>
 </div>

@@ -20,7 +20,7 @@ angular.module('users').config(['$stateProvider',
 		var password= {
 			name: 'settings.password',
 			url: '/password',
-			templateUrl: 'modules/users/views/settings/change-password.client.view.html'
+			templateUrl: 'modules/users/views/password/change-password.client.view.html'
 		};
 
 		var signup = {

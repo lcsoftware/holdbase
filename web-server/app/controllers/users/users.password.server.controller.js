@@ -195,8 +195,6 @@ exports.changePassword = function(req, res) {
 		if (passwordDetails.newPassword) {
 			User.findById(req.user.id, function(err, user) {
 				if (!err && user) {
-					console.log('@@@@@@@@@@@@@@@@@@@@@@@111');
-					console.log(passwordDetails.currentPassword);
 					if (user.authenticate(passwordDetails.currentPassword)) {
 						if (passwordDetails.newPassword === passwordDetails.verifyPassword) {
 							user.password = passwordDetails.newPassword;

@@ -1,8 +1,13 @@
 'use strict';
 
-angular.module('users').controller('SettingsController', ['$scope', '$http', '$location', 'Users', 'Authentication',
+angular.module('users').controller('SettingsController', 
+	['$scope', '$http', '$location', 'Users', 'Authentication',
 	function($scope, $http, $location, Users, Authentication) {
 		$scope.user = Authentication.user;
+
+		if ($scope.user.photoUrl === undefined){
+			$scope.user.photoUrl = 'asset/images/photo.jpg';
+		}
 
 		// If user is not signed in then redirect back home
 		if (!$scope.user) $location.path('/');
@@ -39,20 +44,16 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 		};
 
 		// Update a user profile
-		$scope.updateUserProfile = function(isValid) {
-			if (isValid) {
-				$scope.success = $scope.error = null;
-				var user = new Users($scope.user);
+		$scope.updateUserProfile = function() {
+			$scope.success = $scope.error = null;
+			var user = new Users($scope.user);
 
-				user.$update(function(response) {
-					$scope.success = true;
-					Authentication.user = response;
-				}, function(response) {
-					$scope.error = response.data.message;
-				});
-			} else {
-				$scope.submitted = true;
-			}
+			user.$update(function(response) {
+				$scope.success = true;
+				Authentication.user = response;
+			}, function(response) {
+				$scope.error = response.data.message;
+			});
 		};
 
 		// Change user password
@@ -67,5 +68,10 @@ angular.module('users').controller('SettingsController', ['$scope', '$http', '$l
 				$scope.error = response.message;
 			});
 		};
+
 	}
 ]);
+
+angular.module('users').controller('EditProfileController', ['$scope', '$http', function($scope, $http){
+
+}]);
