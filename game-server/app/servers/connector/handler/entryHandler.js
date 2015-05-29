@@ -48,6 +48,17 @@ Handler.prototype.login = function(msg, session, next) {
 	});
 }
 
+/// user register
+Handler.prototype.register = function(msg, session, next){
+	var username = msg.uid;
+	var password = msg.password;
+	
+}
+
+/// user login
+Handler.prototype.login = function(msg, session, next) {
+
+
 
 /**
  * User log out handler
