@@ -9,7 +9,7 @@ angular.module('core').factory('hbHttp', ['$http', function($http) {
         }).error(function(data){
         	if (err) err(data);
         });
-    }
+    };
 
     return service;
 }]);

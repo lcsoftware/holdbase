@@ -42,12 +42,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
         $scope.signin = function() {
             hbHttp.post('/auth/signin', $scope.credentials, function(data) {
-                if (data.code !== 200) {
-                    $scope.error = data.message;
-                } else {
-                    $scope.authentication.user = data.user;
-                    $state.go('listBenches');
-                }
+                $scope.authentication.user = data.user;
+                $state.go('listBenches');
             }, function(err) {
                 $scope.error = err.message;
             });
