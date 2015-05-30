@@ -36,7 +36,6 @@ exports.signup = function(req, res) {
                 if (err) {
                     res.status(400).send(err);
                 } else {
-                    console.log(user);
                     res.json(user);
                 }
             });

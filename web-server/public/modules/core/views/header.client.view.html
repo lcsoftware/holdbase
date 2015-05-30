@@ -6,7 +6,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a href="/#!/" class="navbar-brand">holdbase</a>
+		<a href="/#!/benches" class="navbar-brand">holdbase</a>
 	</div>
 	<nav class="collapse navbar-collapse" collapse="!isCollapsed" role="navigation">
 		<ul class="nav navbar-nav" data-ng-if="menu.shouldRender(authentication.user);">
@@ -25,11 +25,11 @@
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-hide="authentication.user">
 			<li ui-route="/signup" ng-class="{active: $uiRoute}">
-				<a href="/#!/signup">signup</a>
+				<a href="/#!/signup">注 册</a>
 			</li>
 			<li class="divider-vertical"></li>
 			<li ui-route="/signin" ng-class="{active: $uiRoute}">
-				<a href="/#!/signin">signin</a>
+				<a href="/#!/signin">登 录</a>
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" data-ng-show="authentication.user">
@@ -39,11 +39,11 @@
 				</a>
 				<ul class="dropdown-menu">
 					<li>
-						<a href="/#!/settings/profile">Settings</a>
+						<a href="/#!/settings/profile">个人设置</a>
 					</li>
 					<li class="divider"></li>
 					<li>
-						<a href="/auth/signout">Signout</a>
+						<a href="/auth/signout">退出登录</a>
 					</li>
 				</ul>
 			</li>

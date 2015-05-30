@@ -16,7 +16,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
                 if (data.code === 500) {
                     $scope.error = data.message;
                 } else {
-                    $scope.authentication.user = data.user;
+                    $scope.authentication.user = data;
                     $state.go('listBenches');
                 }
             }, function(data) {
@@ -42,7 +42,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
         $scope.signin = function() {
             hbHttp.post('/auth/signin', $scope.credentials, function(data) {
-                $scope.authentication.user = data.user;
+                $scope.authentication.user = data;
                 $state.go('listBenches');
             }, function(err) {
                 $scope.error = err.message;

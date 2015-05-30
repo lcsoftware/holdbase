@@ -3,15 +3,23 @@
         <div class="col-md-2" style="background-color: red;">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
-                    <li><a href="#">HoldBase<span class="sr-only">(current)</span></a></li>
+                    <li><a>HoldBase<span class="glyphicon glyphicon-plus pull-right" style="cursor:pointer;"></span></a></li>
                     <a href="#" class="list-group-item active">收件箱<span class="badge">14</span></a>
                     <a href="#" class="list-group-item">草稿箱</a>
                     <a href="#" class="list-group-item">已发送</a>
                     <a href="#" class="list-group-item">已删除</a>
                 </ul>
                 <ul class="nav nav-sidebar">
-                    <li><a href="#">我的项目<span class="sr-only">(current)</span></a></li>
-                    <a href="#" class="list-group-item">项目一</a>
+                    <div class="list-group">
+                        <a class="list-group-item" style="background-color:#eee;">
+                            我的项目
+                            <span class="glyphicon glyphicon-plus pull-right" style="cursor:pointer;" aria-hidden="true" onclick="alert('ssss')"></span>
+                        </a>
+                        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                        <a href="#" class="list-group-item">Morbi leo risus</a>
+                        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                        <a href="#" class="list-group-item">Vestibulum at eros</a>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -32,18 +40,18 @@
                         <div class="btn-group" role="group" aria-label="Second group">
                             <button type="button" class="btn btn-default">删除</button>
                             <button type="button" class="btn btn-default dropdown-toggle dropdown">
-                                标记为<span class="caret"></span>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">未读</a></li>
-                                    <li><a href="#">已读</a></li>
-                                </ul>
+                            标记为<span class="caret"></span>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">未读</a></li>
+                                <li><a href="#">已读</a></li>
+                            </ul>
                             </button>
                             <button type="button" class="btn btn-default dropdown-toggle dropdown">
-                                移动到 <span class="caret"></span>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">收件箱</a></li>
-                                    <li><a href="#">文件夹1</a></li>
-                                </ul>
+                            移动到 <span class="caret"></span>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">收件箱</a></li>
+                                <li><a href="#">文件夹1</a></li>
+                            </ul>
                             </button>
                         </div>
                     </div>
@@ -52,36 +60,36 @@
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
-                        </tr>
-                        </thead>
+<!--                         <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                            </tr>
+                        </thead> -->
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+                            <tr>
+                                <th scope="row"><input type="checkbox" aria-label="..."></th>
+                                <td>张三</td>
+                                <td>A项目申请</td>
+                                <td>2015-05-30</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><input type="checkbox" aria-label="..."></th>
+                                <td>李四</td>
+                                <td>B项目申请</td>
+                                <td>2015-05-31</td>
+                            </tr>
+                            <tr>
+                                <th scope="row"><input type="checkbox" aria-label="..."></th>
+                                <td>李四</td>
+                                <td>回复A项目申请</td>
+                                <td>2015-05-31</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-</section>
+    </section>
