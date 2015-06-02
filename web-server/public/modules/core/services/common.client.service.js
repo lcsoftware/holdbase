@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('core').factory('hbHttp', ['$http', function($http) {
+angular.module('core').factory('HHttp', ['$http', function($http) {
     var service = {};
 
     service.post = function(url, param, success, err) {

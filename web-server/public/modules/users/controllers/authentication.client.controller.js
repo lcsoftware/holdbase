@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', 'Authentication', 'HSocket', 'hbHttp',
-    function($scope, $state, $http, $location, Authentication, HSocket, hbHttp) {
+angular.module('users').controller('AuthenticationController', ['$scope', '$state', '$http', '$location', 'Authentication', 'HSocket', 'HHttp',
+    function($scope, $state, $http, $location, Authentication, HSocket, HHttp) {
         $scope.authentication = Authentication;
         // If user is signed in then redirect back home
         if ($scope.authentication.user) $location.path('/');
@@ -12,55 +12,26 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
                 return;
             }
 
-            hbHttp.post('/auth/signup', $scope.credentials, function(data) {
+            HHttp.post('/auth/signup', $scope.credentials, function(data) {
                 if (data.code === 500) {
                     $scope.error = data.message;
                 } else {
-                    $scope.authentication.user = data;
-                    $state.go('listBenches');
+                    $state.go('signin');
                 }
             }, function(data) {
                 $scope.error = data.message;
             });
-
-
-            /*
-            $http.post('/auth/signup', $scope.credentials).success(function(response) {
-                    HSocket.connect($scope.credentials.username, $scope.credentials.password, function(data) {
-                        if (data.code === 500) {
-                            $scope.error = data.message;
-                        } else {
-                            $scope.authentication.user = data.user;
-                            $state.go('listBenches');
-                        }
-                    });
-                })
-                .error(function(response) {
-                    $scope.error = response.message;
-                });*/
         };
 
         $scope.signin = function() {
-            hbHttp.post('/auth/signin', $scope.credentials, function(data) {
-                $scope.authentication.user = data;
-                $state.go('listBenches');
-            }, function(err) {
-                $scope.error = err.message;
-            });
-            /*
-            $http.post('/auth/signin', $scope.credentials).success(function(response) {
-                HSocket.connect($scope.credentials.username, $scope.credentials.password, function(data) {
-                    if (data.code !== 200) {
-                        $scope.error = data.message;
-                    } else {
-                        $scope.authentication.user = data.user;
-                        console.log(data.user);
-                        $state.go('settings.profile');
-                    }
-                });
-            }).error(function(response) {
-                $scope.error = response.message;
-            });*/
+           HSocket.login($scope.credentials.username, $scope.credentials.password, function(data){
+                if (data.code === 200){
+                    $scope.authentication.user = data.user;
+                    $state.go('listBenches');
+                } else {
+                    $scope.error = data.message;
+                }
+           }); 
         };
     }
 ]);

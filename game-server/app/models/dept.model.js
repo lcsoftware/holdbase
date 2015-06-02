@@ -15,7 +15,10 @@ var DeptSchema = new Schema {
 		type: Schema.ObjectId,
 		ref: 'Company'
 	},
-	children: [{type: Schema.ObjectId, ref: 'Dept'}],
+	parent {
+		type: Schema.ObjectId,
+		ref: 'Dept'
+	}
 	flag: {type: Number}
 };
 
