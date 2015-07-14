@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var CompanySchema = new Schema {
-	name : {
+	name: {
 		type: String,
 		unique: '公司名称已经存在',
 		required: '必须填写公司名称',
@@ -35,7 +35,9 @@ var CompanySchema = new Schema {
 	address: {
 		type: String
 	},
-	flag: {type: Number},
+	flag: {
+		type: Number
+	},
 	updated: {
 		type: Date,
 	},
@@ -49,21 +51,22 @@ var CompanySchema = new Schema {
  * Hook a pre save method to hash the password
  */
 CompanySchema.pre('save', function(next) {
-    if (this.password && this.password.length > 6) {
-        this.salt = crypto.randomBytes(16).toString('base64');
-        this.password = this.hashPassword(this.password);
-    }
-    next();
+	if (this.password && this.password.length > 6) {
+		this.salt = crypto.randomBytes(16).toString('base64');
+		this.password = this.hashPassword(this.password);
+	}
+	next();
 });
 /**
  * Create instance method for hashing a password
  */
 CompanySchema.methods.hashPassword = function(password) {
-    if (this.salt && password) {
-        return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000, 64).toString('base64');
-    } else {
-        return password;
-    }
+	if (this.salt && password) {
+		return crypto.pbkdf2Sync(password, new Buffer(this.salt, 'base64'), 10000,
+			64).toString('base64');
+	} else {
+		return password;
+	}
 };
 
 mongoose.model('Company', CompanySchema);
